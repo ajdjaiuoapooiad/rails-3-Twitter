@@ -4,5 +4,9 @@ Rails.application.routes.draw do
   get '/help' =>  'static_pages#help'
   get  '/about' => 'static_pages#about'
   get  "/contact" => "static_pages#contact"
-  get  "/signup",  to: "users#new"
+
+  resources :users
+  get  "/signup" =>  "users#new"
+  post '/signup' => 'users#create'
+  get '/users/:id' => 'users#show'
 end
