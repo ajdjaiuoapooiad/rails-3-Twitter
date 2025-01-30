@@ -17,7 +17,18 @@
           <a class="nav-link active" href="/login">Log in</a>
         </li>
 
+        <li class="nav-item ">
+          <a class="nav-link active" href="/">Profile</a>
+        </li>
+        <li class="nav-item ">
+          <a class="nav-link active" href="/">Settings</a>
+        </li>
+        <li class="nav-item ">
+          <%= link_to "Log out", logout_path, data: { "turbo-method": :delete } %>
+        </li>
+       
 
+        <% if logged_in? %>
         <div class="dropdown">
           <button class="btn btn-secondary dropdown-toggle"
                   type="button" id="dropdownMenu1" data-toggle="dropdown"
@@ -30,10 +41,11 @@
             <a class="dropdown-item" href="/logout">Logout</a>
           </div>
         </div>
-       
+       <% else %>
         <li class="nav-item ">
           <a class="nav-link active " href="/login">Login</span></a>
         </li>
+        <% end %>
       </ul>
   
     </div>

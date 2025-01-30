@@ -20,6 +20,8 @@ class UsersController < ApplicationController
     end
   end
 
+  
+
   private
 
   def post_params
