@@ -8,13 +8,15 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
-  def create 
-    @user = User.new(post_params)
-    if @user.save 
-      flash[:success] = "Welcome to the Sample App!"
+  def create
+    user = User.find_by(email: params[:session][:email].downcase)
+    if user && user.authenticate(params[:session][:password])
+      reset_session      # ログインの直前に必ずこれを書くこと
+      log_in user
       redirect_to('/')
     else
-      render :new
+      flash.now[:danger] = 'Invalid email/password combination'
+      render 'new', status: :unprocessable_entity
     end
   end
 
